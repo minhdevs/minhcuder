@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!--  -->
+	<!-- Cấu hình cơ bản -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title><%= page.pageTitle || 'Blog của minhcuder - mwarevn' %></title>
+	<meta name="description" content="<%= page.pageDescription || 'Nguyễn Văn Minh, biệt danh minhcuder, là một lập trình viên back-end đầy nhiệt huyết và hiện đang là sinh viên IT. Blog mwarevn của Minh là nơi chia sẻ kiến thức lập trình back-end, lưu giữ những kỷ niệm trong hành trình trở thành lập trình viên chuyên nghiệp. Khám phá các bài viết bổ ích về công nghệ, lập trình và hành trình phát triển sự nghiệp của một coder trẻ đầy đam mê.' %>">
+
+	<!-- Thẻ SEO cơ bản -->
+	<meta name="keywords" content="<%= page.pageKeywords || 'default, keywords, SEO' %>">
+	<meta name="author" content="<%= page.pageAuthor || 'minhcuder' %>">
+	<link rel="canonical" href="<%= page.pageUrl || 'https://minhcuder.com/' %>">
+
+	<!-- Open Graph (OG) Tags for Facebook and others -->
+	<meta property="og:title" content="<%= page.pageTitle || 'Blog của minhcuder - mwarevn' %>">
+	<meta property="og:description" content="<%= page.pageDescription || 'Nguyễn Văn Minh, biệt danh minhcuder, là một lập trình viên back-end đầy nhiệt huyết và hiện đang là sinh viên IT. Blog mwarevn của Minh là nơi chia sẻ kiến thức lập trình back-end, lưu giữ những kỷ niệm trong hành trình trở thành lập trình viên chuyên nghiệp. Khám phá các bài viết bổ ích về công nghệ, lập trình và hành trình phát triển sự nghiệp của một coder trẻ đầy đam mê.' %>">
+	<meta property="og:image" content="<%= page.pageImage || 'default-image-url.jpg' %>">
+	<meta property="og:url" content="<%= page.pageUrl || 'https://minhcuder.com/' %>">
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="<%= page.siteName || 'Blog của minhcuder - mwarevn' %>">
+	<meta property="og:locale" content="vi_VN">
+
+
+
+	<!-- Twitter Card Tags -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="<%= page.pageTitle || 'Blog của minhcuder - mwarevn' %>">
+	<meta name="twitter:description" content="<%= page.pageDescription || 'Nguyễn Văn Minh, biệt danh minhcuder, là một lập trình viên back-end đầy nhiệt huyết và hiện đang là sinh viên IT. Blog mwarevn của Minh là nơi chia sẻ kiến thức lập trình back-end, lưu giữ những kỷ niệm trong hành trình trở thành lập trình viên chuyên nghiệp. Khám phá các bài viết bổ ích về công nghệ, lập trình và hành trình phát triển sự nghiệp của một coder trẻ đầy đam mê.' %>">
+	<meta name="twitter:image" content="<%= page.pageImage || 'default-image-url.jpg' %>">
+	<meta name="twitter:site" content="@YourTwitterHandle">
+	<meta name="twitter:creator" content="@YourTwitterHandle">
+
+	<!-- Thẻ hỗ trợ SEO khác -->
+	<meta name="robots" content="index, follow"> <!-- Cho phép các công cụ tìm kiếm lập chỉ mục -->
+	<meta name="googlebot" content="index, follow"> <!-- Chỉ thị cho Googlebot -->
+	<meta name="theme-color" content="#ffffff"> <!-- Màu của thanh địa chỉ trên trình duyệt di động -->
+
+	<!-- Favicon -->
+	<link rel="icon" href="<%= page.pageIcon %>" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/path-to-apple-touch-icon.png">
+	<link rel="manifest" href="/path-to-site.webmanifest"> <!-- Progressive Web App (PWA) -->
+
+	<!-- Structured Data (JSON-LD) for Rich Snippets -->
+	<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "WebPage",
+			"name": "<%= page.pageTitle || 'Blog của minhcuder - mwarevn' %>",
+			"description": "<%= page.pageDescription || 'Nguyễn Văn Minh, biệt danh minhcuder, là một lập trình viên back-end đầy nhiệt huyết và hiện đang là sinh viên IT. Blog mwarevn của Minh là nơi chia sẻ kiến thức lập trình back-end, lưu giữ những kỷ niệm trong hành trình trở thành lập trình viên chuyên nghiệp. Khám phá các bài viết bổ ích về công nghệ, lập trình và hành trình phát triển sự nghiệp của một coder trẻ đầy đam mê.' %>",
+			"url": "<%= page.pageUrl || 'https://minhcuder.com/' %>",
+			"image": "<%= page.pageImage || 'default-image-url.jpg' %>",
+			"author": {
+				"@type": "Person",
+				"name": "<%= page.pageAuthor || 'Nguyễn Văn Minh' %>"
+			},
+			"publisher": {
+				"@type": "Organization",
+				"name": "<%= page.siteName || 'minhcuder' %>",
+				"logo": {
+					"@type": "ImageObject",
+					"url": "/path-to-website-logo.png"
+				}
+			},
+			"mainEntityOfPage": {
+				"@type": "WebPage",
+				"@id": "<%= page.pageUrl || 'https://minhcuder.com/' %>"
+			}
+		}
+	</script>
+	<!--  -->
+
+	<!-- swalalert2 -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<!-- ToastifyJs -->
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+	<!-- Tailwindcss Flowbite -->
+	<link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
+
+	<!-- Custom Style -->
+	<!-- <link rel="stylesheet" href="stylesheets/style.css" /> -->
+</head>
+
+<body>
+	<%- include('./partials/header.ejs') %>
+	<!--  -->
+	<div class="container mx-auto p-4" style="max-width: 1100px;"><%- body %></div>
+	<!--  -->
+	<%- include('./partials/footer.ejs') %>
+
+	<!-- Flowbite script -->
+	<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<style>
+  pre {
+        white-space: pre-wrap;       /* Chuẩn: Cho phép ngắt dòng khi cần */
+        word-wrap: break-word;       /* Hỗ trợ cũ: Cho phép ngắt dòng từ giữa từ */
+        overflow-wrap: break-word;   /* Hỗ trợ chuẩn: Cho phép ngắt dòng từ giữa từ */
+      }
+      .page-post {
+        color: #1a56db ;
+    }
+</style>
+
+<p class="mt-6 mb-2 text-sm font-normal text-gray-500 lg:text-sm dark:text-gray-400">
+	Đăng vào lúc: <%= new Date(post.createdAt).toLocaleDateString('vi-VN') %> - bởi minhcuder
+</p>
+<p class="mb-6 text-sm font-normal text-gray-500 lg:text-sm dark:text-gray-400">
+Danh mục: <a href="../../post/search?category=<%- post.category %>" class="cursor-pointer hover:decoration-solid text-blue-800 font-semibold dark:text-blue-800 ms-2"><%= post.category %></a>
+</p>
+<h1 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl dark:text-white"><%= post.title %></h1>
+<p hidden class="mb-6 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400"><%= post.description %></p>
+<pre><main id="display-content"><h1><%- post.title %></h1><div><%- post.contentHtml %></main></main></pre>
+<p class="mt-6 text-sm font-normal text-gray-500 lg:text-sm dark:text-gray-400">
+	<% post.tags.forEach(e => { %>
+	<a href="../../post/search?tags=<%- e %>"><%- e %></a>
+	<% }) %>
+</p>

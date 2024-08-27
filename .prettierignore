@@ -1,0 +1,7 @@
+# Ignore artifacts:
+dist
+test
+
+# Ignore all EJS & spec files:
+**/*.ejs
+**/*.spec.ts

@@ -1,0 +1,60 @@
+<style>
+	.line-clamp-1 {
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 3;
+		line-clamp: 3;
+		overflow: hidden;
+	}
+	.page-post {
+        color: #1a56db ;
+    }
+</style>
+<div class="container">
+	<p class="text-2xl text-gray-900 dark:text-white font-bold">
+		Bài viết của tôi
+	</p>
+	<p class="text-lg text-gray-500 dark:text-white my-5">
+		Tổng hợp tất cả các bài viết chia sẻ kinh nghiệm, kiến thức....
+	</p>
+
+	<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 md:gap-3 gap-4">
+		<% posts.forEach(post => { %>
+		<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+			<a>
+				<img class="rounded-t-lg" src="<%- post.cover_image %>" alt="" style="aspect-ratio: 16/9;object-fit:cover ;" loading="lazy" />
+			</a>
+			<div class="p-4 relative h-80">
+				<div>
+					<a href="/post/read/<%- post.slug %>">
+						<h5 class="line-clamp-1 max-h-16 overflow-hidden relative before:content-['...'] before:absolute before:right-0 before:bottom-0 mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+							<%- post.title %>
+						</h5>
+					</a>
+					<p class=" line-clamp-1 max-h-16 overflow-hidden relative before:content-['...'] before:absolute before:right-0 before:bottom-0 mb-3 font-normal text-gray-700 dark:text-gray-400 ">
+						<%- post.description %>
+					</p>
+				</div>
+
+
+				<div class="absolute bottom-4  " style="width: 90%;" >
+					<a href="/post/read/<%- post.slug %>" class=" flex align-center  items-center text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 ">
+						Read more
+						<svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+							<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+						</svg>
+					</a>
+	
+	
+					<p class="mt-2 text-sm dark" hidden>
+						<% if (post && post.createdAt) { %>
+							<i class="ms-2 text-gray-500 text-sm">posted at: <%= new Date(post.createdAt).toLocaleDateString('vi-VN') %></i>
+						<% } %>
+					</p>
+				</div>
+			</div>
+
+		</div>
+		<% }) %>
+	</div>
+</div>

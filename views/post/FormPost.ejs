@@ -1,0 +1,241 @@
+<link
+  rel="stylesheet"
+  href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"
+/>
+
+<div>
+  <div>
+    <form
+      class="max-w-xxl flex gap-4 items-center"
+      action="/post/create"
+      method="POST"
+    >
+      <img
+        style="aspect-ratio: 16 / 9"
+        class="preview-image rounded w-96 block cursor-pointer object-cover"
+        src="https://files.fullstack.edu.vn/f8-prod/blog_posts/10849/667548f5c4e1b.png"
+        alt="Extra large avatar"
+        title="Click to choose cover image"
+      />
+
+      <!-- input cover image -->
+      <div class="mb-5 w-96" hidden>
+        <label
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          for="input_cover_image"
+          >Cover image</label
+        >
+        <!-- name="cover_image" -->
+        <input
+          class="cover-image block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+          id="input_cover_image"
+          type="file"
+          name="file"
+        />
+      </div>
+      <div class="w-full grid grid-cols-2 grid-flow-col gap-4 items-center">
+        <div>
+          <!-- input title -->
+          <div class="mb-5">
+            <label
+              for="input_title"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Title</label
+            >
+            <input
+              name="title"
+              type="text"
+              id="input_title"
+              class="block w-full text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+          </div>
+
+          <!-- select category -->
+          <div class="mb-5">
+            <label
+              for="select_category"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Category</label
+            >
+            <select
+              name="category"
+              id="select_category"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              <option selected>Choose a country</option>
+              <option value="tutorials">Tutorials</option>
+              <option value="tech-news">Tech News</option>
+              <option value="code-snippets">Code Snippets</option>
+              <option value="tips-trick">Tips & Trick</option>
+              <option value="learning-resources">Learning Resources</option>
+              <option value="reviews">Reviews</option>
+              <option value="Opinion">Opinion</option>
+              <option value="technology">Technology</option>
+              <option value="projects">Projects</option>
+              <option value="security">Tips & Trick</option>
+            </select>
+          </div>
+
+          <!-- input tags -->
+          <div class="mb-5">
+            <label
+              for="input_tags"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Tags</label
+            >
+            <input
+              placeholder="Ex: programing, javascript, hacking"
+              type="text"
+              id="input_tags"
+              name="tags"
+              class="block w-full text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+          </div>
+        </div>
+        <div>
+          <!-- input description -->
+          <div class="mb-5">
+            <label
+              for="input_description"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Description</label
+            >
+            <textarea
+              id="input_description"
+              name="description"
+              rows="10"
+              class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Write your thoughts here..."
+            ></textarea>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="container mt-5">
+    <label
+      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      for="editor"
+      >Content
+      <span class="text-orange-500"
+        >(nếu muốn thêm ảnh vui lòng upload lên imgur hoặc bất kỳ nền tảng nào
+        khác rồi paste link vào nội dung là được.)</span
+      ></label
+    >
+    <div id="editor"></div>
+  </div>
+
+  <button
+    id="button-publish"
+    name="submit"
+    type="button"
+    class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+  >
+    Save & Publish
+  </button>
+</div>
+<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+<script type="module">
+  const Editor = toastui.Editor;
+
+  const editor = new Editor({
+    el: document.querySelector('#editor'),
+    height: '500px',
+    initialEditType: 'markdown',
+    previewStyle: 'vertical',
+  });
+
+  editor.getMarkdown();
+
+  const inputCorverImage = document.querySelector('.cover-image');
+  const previewImage = document.querySelector('.preview-image');
+  const btnPublish = document.getElementById('button-publish');
+  let corverImage = null,
+    content = null;
+
+  previewImagePicker(inputCorverImage, previewImage);
+  // image picker preview
+  function previewImagePicker(input, preview) {
+    preview.onclick = () => input.click();
+
+    input.oninput = (evt) => {
+      const file = evt.target.files[0];
+
+      if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+          // Hiển thị hình ảnh trong preview
+          preview.src =
+            'https://t3.ftcdn.net/jpg/03/72/50/20/360_F_372502042_z24d6nmMGWHWRxOLjM5lmTP2jA3nIeg7.jpg';
+
+          // Gửi file tới server
+          const formData = new FormData();
+          formData.append('file', file);
+
+          fetch('../upload-image/single', {
+            method: 'POST',
+            body: formData,
+          })
+            .then((res) => res.json())
+            .then((res) => {
+              if (res.success) {
+                preview.src = res.data.link;
+                corverImage = res.data.link;
+              }
+            })
+            .catch((err) => {
+              alert('Error uploading file:', err);
+            });
+        };
+
+        // Đọc file dưới dạng Data URL chỉ để hiển thị trên giao diện người dùng
+        reader.readAsDataURL(file);
+      }
+    };
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    btnPublish.addEventListener('click', function () {
+      const contentMarkdown = JSON.stringify(editor.getMarkdown());
+      content = contentMarkdown;
+
+      const formData = new FormData(document.querySelector('form'));
+      formData.append('cover_image', corverImage);
+      formData.append('content', content);
+      formData.delete('file');
+
+      const jsonDataPayload = {};
+      formData.forEach((value, key) => {
+        jsonDataPayload[key] = value;
+      });
+
+      fetch('../post/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(jsonDataPayload),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          if (res.success) {
+            Swal.fire({
+              title: 'Success',
+              text: 'The post has been created success!',
+              icon: 'success',
+              confirmButtonColor: '#3085d6',
+              confirmButtonText: 'Okay!',
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.reload();
+              }
+            });
+          } else {
+            alert(res.message);
+          }
+        });
+    });
+  });
+</script>
